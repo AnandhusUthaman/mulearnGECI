@@ -37,9 +37,9 @@ export function Events() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
+      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white dark:from-gray-900 dark:to-gray-900 dark:text-blue-100 py-20 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -47,7 +47,7 @@ export function Events() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Community Events</h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-blue-100 dark:text-blue-200 max-w-3xl mx-auto leading-relaxed">
               Discover exciting opportunities to learn, network, and grow through our carefully curated events and workshops.
             </p>
           </motion.div>
@@ -59,13 +59,13 @@ export function Events() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Tab Navigation */}
           <div className="flex justify-center mb-12">
-            <div className="bg-gray-100 p-1 rounded-lg">
+            <div className="bg-gray-100 dark:bg-gray-800 p-1 rounded-lg transition-colors duration-300">
               <button
                 onClick={() => setActiveTab('upcoming')}
                 className={`px-6 py-3 rounded-md font-medium transition-colors ${
                   activeTab === 'upcoming'
                     ? 'bg-blue-600 text-white'
-                    : 'text-gray-600 hover:text-blue-600'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
                 }`}
               >
                 Upcoming Events
@@ -75,7 +75,7 @@ export function Events() {
                 className={`px-6 py-3 rounded-md font-medium transition-colors ${
                   activeTab === 'past'
                     ? 'bg-blue-600 text-white'
-                    : 'text-gray-600 hover:text-blue-600'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
                 }`}
               >
                 Past Events
@@ -87,80 +87,80 @@ export function Events() {
           {isLoading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600">Loading events...</p>
+              <p className="mt-4 text-gray-600 dark:text-gray-300">Loading events...</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
               {events.map((event, index) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={getEventImageUrl(event.image)}
-                    alt={event.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {event.type}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-tight">
-                    {event.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    {event.description}
-                  </p>
-
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center text-sm text-gray-500">
-                      <Calendar className="h-4 w-4 mr-2 text-blue-600" />
-                      <span>
-                        {new Date(event.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
+                <motion.div
+                  key={event.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={getEventImageUrl(event.image)}
+                      alt={event.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {event.type}
                       </span>
-                      <Clock className="h-4 w-4 ml-4 mr-2 text-blue-600" />
-                      <span>{event.time}</span>
-                    </div>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <MapPin className="h-4 w-4 mr-2 text-blue-600" />
-                      <span>{event.location}</span>
-                    </div>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <Users className="h-4 w-4 mr-2 text-blue-600" />
-                      <span>{event.attendees} attendees</span>
                     </div>
                   </div>
 
-                  {activeTab === 'upcoming' && (
-                    <div className="pt-2">
-                      <RegistrationButton
-                        eventId={event.id}
-                        eventTitle={event.title}
-                        registrationLink={event.registrationLink}
-                      />
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 leading-tight">
+                      {event.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                      {event.description}
+                    </p>
+
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                        <Calendar className="h-4 w-4 mr-2 text-blue-600" />
+                        <span>
+                          {new Date(event.date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </span>
+                        <Clock className="h-4 w-4 ml-4 mr-2 text-blue-600" />
+                        <span>{event.time}</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                        <MapPin className="h-4 w-4 mr-2 text-blue-600" />
+                        <span>{event.location}</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                        <Users className="h-4 w-4 mr-2 text-blue-600" />
+                        <span>{event.attendees || 0} attendees</span>
+                      </div>
                     </div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
+
+                    {activeTab === 'upcoming' && (
+                      <div className="pt-2">
+                        <RegistrationButton
+                          eventId={event.id}
+                          eventTitle={event.title}
+                          registrationLink={event.registrationLink}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
 
           {events.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No events available at the moment.</p>
+              <p className="text-gray-500 dark:text-gray-400 text-lg">No events available at the moment.</p>
             </div>
           )}
         </div>

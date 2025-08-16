@@ -92,20 +92,20 @@ export function CreateEvent() {
         <div className="flex items-center space-x-4">
           <button
             onClick={() => navigate('/admin/events')}
-            className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Create New Event</h1>
-            <p className="text-gray-600 mt-2">Add a new event to your community</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Create New Event</h1>
+            <p className="text-gray-600 dark:text-gray-300 mt-2">Add a new event to your community</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-colors duration-300">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Event Image *
               </label>
               <div className="space-y-4">
@@ -125,10 +125,10 @@ export function CreateEvent() {
                     </button>
                   </div>
                 ) : (
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-500 transition-colors">
+                  <div className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-6 text-center hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
                     <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600 mb-2">Click to upload an image</p>
-                    <p className="text-sm text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-2">Click to upload an image</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">PNG, JPG, GIF up to 10MB</p>
                     <input
                       type="file"
                       accept="image/*"
@@ -148,101 +148,101 @@ export function CreateEvent() {
             </div>
 
             <div>
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Event Title *
               </label>
               <input
                 type="text"
                 id="title"
                 {...register('title', { required: 'Title is required' })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
                 placeholder="Enter event title"
               />
               {errors.title && (
-                <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.title.message}</p>
               )}
             </div>
 
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Description *
               </label>
               <textarea
                 id="description"
                 rows={3}
                 {...register('description', { required: 'Description is required' })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
                 placeholder="Enter event description"
               />
               {errors.description && (
-                <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.description.message}</p>
               )}
             </div>
 
             <div>
-              <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="content" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Content
               </label>
               <textarea
                 id="content"
                 rows={6}
                 {...register('content')}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
                 placeholder="Enter event content (optional)"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="date" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Event Date *
                 </label>
                 <input
                   type="date"
                   id="date"
                   {...register('date', { required: 'Date is required' })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
                 />
                 {errors.date && (
-                  <p className="mt-1 text-sm text-red-600">{errors.date.message}</p>
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.date.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="time" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Start Time *
                 </label>
                 <input
                   type="time"
                   id="time"
                   {...register('time', { required: 'Time is required' })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
                 />
                 {errors.time && (
-                  <p className="mt-1 text-sm text-red-600">{errors.time.message}</p>
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.time.message}</p>
                 )}
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Location *
                 </label>
                 <input
                   type="text"
                   id="location"
                   {...register('location', { required: 'Location is required' })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
                   placeholder="Enter event location"
                 />
                 {errors.location && (
-                  <p className="mt-1 text-sm text-red-600">{errors.location.message}</p>
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.location.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="maxAttendees" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="maxAttendees" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Max Attendees *
                 </label>
                 <input
@@ -252,94 +252,94 @@ export function CreateEvent() {
                     required: 'Max attendees is required',
                     min: { value: 1, message: 'Must be at least 1' }
                   })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
                   placeholder="50"
                 />
                 {errors.maxAttendees && (
-                  <p className="mt-1 text-sm text-red-600">{errors.maxAttendees.message}</p>
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.maxAttendees.message}</p>
                 )}
               </div>
             </div>
 
-                         <div>
-               <label htmlFor="registrationLink" className="block text-sm font-medium text-gray-700 mb-2">
-                 Registration Link (Optional)
-               </label>
-               <input
-                 type="url"
-                 id="registrationLink"
-                 {...register('registrationLink')}
-                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                 placeholder="https://example.com/register"
-               />
-               <p className="mt-1 text-sm text-gray-500">Add a registration link for external registration platforms</p>
-             </div>
+            <div>
+              <label htmlFor="registrationLink" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                Registration Link (Optional)
+              </label>
+              <input
+                type="url"
+                id="registrationLink"
+                {...register('registrationLink')}
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
+                placeholder="https://example.com/register"
+              />
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Add a registration link for external registration platforms</p>
+            </div>
 
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-               <div>
-                 <label htmlFor="type" className="block text-sm font-medium text-gray-700 mb-2">
-                   Event Type *
-                 </label>
-                 <select
-                   id="type"
-                   {...register('type', { required: 'Event type is required' })}
-                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                 >
-                   <option value="workshop">Workshop</option>
-                   <option value="seminar">Seminar</option>
-                   <option value="competition">Competition</option>
-                   <option value="conference">Conference</option>
-                   <option value="bootcamp">Bootcamp</option>
-                   <option value="hackathon">Hackathon</option>
-                   <option value="meetup">Meetup</option>
-                   <option value="webinar">Webinar</option>
-                 </select>
-                 {errors.type && (
-                   <p className="mt-1 text-sm text-red-600">{errors.type.message}</p>
-                 )}
-               </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label htmlFor="type" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                  Event Type *
+                </label>
+                <select
+                  id="type"
+                  {...register('type', { required: 'Event type is required' })}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
+                >
+                  <option value="workshop">Workshop</option>
+                  <option value="seminar">Seminar</option>
+                  <option value="competition">Competition</option>
+                  <option value="conference">Conference</option>
+                  <option value="bootcamp">Bootcamp</option>
+                  <option value="hackathon">Hackathon</option>
+                  <option value="meetup">Meetup</option>
+                  <option value="webinar">Webinar</option>
+                </select>
+                {errors.type && (
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.type.message}</p>
+                )}
+              </div>
 
-               <div>
-                 <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
-                   Category
-                 </label>
-                 <select
-                   id="category"
-                   {...register('category')}
-                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                 >
-                   <option value="technical">Technical</option>
-                   <option value="cultural">Cultural</option>
-                   <option value="sports">Sports</option>
-                   <option value="academic">Academic</option>
-                   <option value="social">Social</option>
-                   <option value="career">Career</option>
-                 </select>
-               </div>
+              <div>
+                <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                  Category
+                </label>
+                <select
+                  id="category"
+                  {...register('category')}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
+                >
+                  <option value="technical">Technical</option>
+                  <option value="cultural">Cultural</option>
+                  <option value="sports">Sports</option>
+                  <option value="academic">Academic</option>
+                  <option value="social">Social</option>
+                  <option value="career">Career</option>
+                </select>
+              </div>
 
-               <div>
-                 <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-2">
-                   Status
-                 </label>
-                 <select
-                   id="status"
-                   {...register('status')}
-                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                 >
-                   <option value="upcoming">Upcoming</option>
-                   <option value="ongoing">Ongoing</option>
-                   <option value="completed">Completed</option>
-                   <option value="cancelled">Cancelled</option>
-                   <option value="postponed">Postponed</option>
-                 </select>
-               </div>
-             </div>
+              <div>
+                <label htmlFor="status" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                  Status
+                </label>
+                <select
+                  id="status"
+                  {...register('status')}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
+                >
+                  <option value="upcoming">Upcoming</option>
+                  <option value="ongoing">Ongoing</option>
+                  <option value="completed">Completed</option>
+                  <option value="cancelled">Cancelled</option>
+                  <option value="postponed">Postponed</option>
+                </select>
+              </div>
+            </div>
 
             <div className="flex space-x-4 pt-6">
               <button
                 type="button"
                 onClick={() => navigate('/admin/events')}
-                className="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                className="px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
               >
                 Cancel
               </button>

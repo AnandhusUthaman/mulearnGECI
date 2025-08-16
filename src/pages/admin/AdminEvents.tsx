@@ -26,13 +26,13 @@ export function AdminEvents() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Upcoming':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300';
       case 'Completed':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300';
       case 'Cancelled':
-        return 'bg-red-100 text-red-800';
+        return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
     }
   };
 
@@ -95,8 +95,8 @@ export function AdminEvents() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Events Management</h1>
-            <p className="text-gray-600 mt-2">Create, edit, and manage your community events</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Events Management</h1>
+            <p className="text-gray-600 dark:text-gray-300 mt-2">Create, edit, and manage your community events</p>
           </div>
           <button 
             onClick={handleNewEvent}
@@ -108,7 +108,7 @@ export function AdminEvents() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-colors duration-300">
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="flex-1 relative">
               <Search className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
@@ -117,7 +117,7 @@ export function AdminEvents() {
                 placeholder="Search events..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
               />
             </div>
             <div className="relative">
@@ -125,7 +125,7 @@ export function AdminEvents() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                className="pl-10 pr-8 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors"
               >
                 <option value="all">All Status</option>
                 <option value="upcoming">Upcoming</option>
@@ -140,132 +140,132 @@ export function AdminEvents() {
         {isLoading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading events...</p>
+            <p className="mt-4 text-gray-600 dark:text-gray-300">Loading events...</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {filteredEvents.map((event, index) => (
-            <motion.div
-              key={event.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="flex">
-                <div className="relative w-1/3 h-48 overflow-hidden">
-                  <img
-                    src={getEventImageUrl(event.image)}
-                    alt={event.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(event.status)}`}>
-                      {event.status}
-                    </span>
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="flex">
+                  <div className="relative w-1/3 h-48 overflow-hidden">
+                    <img
+                      src={getEventImageUrl(event.image)}
+                      alt={event.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(event.status)}`}>
+                        {event.status}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex-1 p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 leading-tight">
+                      {event.title}
+                    </h3>
+                    
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                        <CalendarIcon className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>{event.date} at {event.time}</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                        <MapPin className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>{event.location}</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                        <Users className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>{event.attendees}/{event.maxAttendees} attendees</span>
+                      </div>
+                    </div>
+
+                    {/* Progress bar for attendees */}
+                    <div className="mb-4">
+                      <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+                        <span>Capacity</span>
+                        <span>{Math.round((event.attendees / event.maxAttendees) * 100)}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div 
+                          className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                          style={{ width: `${(event.attendees / event.maxAttendees) * 100}%` }}
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <button 
+                          onClick={() => handleEditEvent(event)}
+                          className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900 rounded-lg transition-colors"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </button>
+                        <button 
+                          onClick={() => handleDeleteEvent(event)}
+                          className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900 rounded-lg transition-colors"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                      <button 
+                        onClick={() => handleViewDetails(event)}
+                        className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium"
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
                 </div>
-
-                <div className="flex-1 p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-tight">
-                    {event.title}
-                  </h3>
-                  
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center text-sm text-gray-600">
-                      <CalendarIcon className="h-4 w-4 mr-2 text-blue-500" />
-                      <span>{event.date} at {event.time}</span>
-                    </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <MapPin className="h-4 w-4 mr-2 text-blue-500" />
-                      <span>{event.location}</span>
-                    </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Users className="h-4 w-4 mr-2 text-blue-500" />
-                      <span>{event.attendees}/{event.maxAttendees} attendees</span>
-                    </div>
-                  </div>
-
-                  {/* Progress bar for attendees */}
-                  <div className="mb-4">
-                    <div className="flex justify-between text-xs text-gray-500 mb-1">
-                      <span>Capacity</span>
-                      <span>{Math.round((event.attendees / event.maxAttendees) * 100)}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${(event.attendees / event.maxAttendees) * 100}%` }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <button 
-                        onClick={() => handleEditEvent(event)}
-                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </button>
-                      <button 
-                        onClick={() => handleDeleteEvent(event)}
-                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                    <button 
-                      onClick={() => handleViewDetails(event)}
-                      className="text-blue-600 hover:text-blue-700 text-sm font-medium"
-                    >
-                      View Details
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-                      ))}
+              </motion.div>
+            ))}
           </div>
         )}
 
         {filteredEvents.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-gray-400 mb-4">
+            <div className="text-gray-400 dark:text-gray-500 mb-4">
               <CalendarIcon className="h-12 w-12 mx-auto" />
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No events found</h3>
-            <p className="text-gray-500">Try adjusting your search or filter criteria.</p>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No events found</h3>
+            <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or filter criteria.</p>
           </div>
         )}
 
         {/* Statistics */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Events Statistics</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-colors duration-300">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Events Statistics</h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">
+              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                 {events.filter(e => e.status === 'Upcoming').length}
               </div>
-              <div className="text-sm text-gray-600">Upcoming</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Upcoming</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
                 {events.filter(e => e.status === 'Completed').length}
               </div>
-              <div className="text-sm text-gray-600">Completed</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Completed</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">
+              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
                 {events.reduce((sum, event) => sum + event.attendees, 0)}
               </div>
-              <div className="text-sm text-gray-600">Total Attendees</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Total Attendees</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-600">
-                {Math.round(events.reduce((sum, event) => sum + (event.attendees / event.maxAttendees * 100), 0) / events.length)}%
+              <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                {Math.round(events.reduce((sum, event) => sum + (event.attendees / event.maxAttendees * 100), 0) / (events.length || 1))}%
               </div>
-              <div className="text-sm text-gray-600">Avg. Capacity</div>
+              <div className="text-sm text-gray-600 dark:text-gray-300">Avg. Capacity</div>
             </div>
           </div>
         </div>
