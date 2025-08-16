@@ -140,7 +140,7 @@ export function Home() {
                 </div>
                 <div className="p-6">
                   <div className="text-sm text-blue-600 mb-2">
-                    {new Date(post.date).toLocaleDateString('en-US', {
+                    {new Date(post.createdAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
@@ -233,7 +233,7 @@ export function Home() {
                       </div>
                       <div className="flex items-center text-sm text-gray-500">
                         <Users className="h-4 w-4 mr-2 text-blue-600" />
-                        <span>{event.attendees} attendees</span>
+                        <span>{event.currentAttendees} attendees</span>
                       </div>
                     </div>
 
