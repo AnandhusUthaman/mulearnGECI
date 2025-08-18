@@ -129,9 +129,9 @@ router.post('/', adminAuth, upload.single('image'), handleUploadError, validateP
 
     const {
       title,
-      description,
+      /*description,
       content,
-      category,
+      category,*/
       tags,
       status,
       featured,
@@ -141,11 +141,11 @@ router.post('/', adminAuth, upload.single('image'), handleUploadError, validateP
 
     const post = new Post({
       title,
-      description,
+      /*description,
       content,
+      category,*/
       image: `/uploads/posts/${req.file.filename}`,
       imageAlt: imageAlt || title,
-      category,
       tags: tags ? JSON.parse(tags) : [],
       status: status || 'draft',
       featured: featured === 'true',
@@ -191,9 +191,9 @@ router.put('/:id', adminAuth, validateObjectId, upload.single('image'), handleUp
 
     const {
       title,
-      description,
+      /*description,
       content,
-      category,
+      category,*/
       tags,
       status,
       featured,
@@ -203,9 +203,9 @@ router.put('/:id', adminAuth, validateObjectId, upload.single('image'), handleUp
 
     // Update fields
     post.title = title || post.title;
-    post.description = description || post.description;
+    /*post.description = description || post.description;
     post.content = content || post.content;
-    post.category = category || post.category;
+    post.category = category || post.category;*/
     post.tags = tags ? JSON.parse(tags) : post.tags;
     post.status = status || post.status;
     post.featured = featured !== undefined ? featured === 'true' : post.featured;

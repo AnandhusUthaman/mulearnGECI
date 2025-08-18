@@ -7,7 +7,7 @@ const postSchema = new mongoose.Schema({
     trim: true,
     maxlength: [200, 'Title cannot exceed 200 characters']
   },
-  description: {
+  /*description: {
     type: String,
     required: [true, 'Description is required'],
     trim: true,
@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema({
   content: {
     type: String,
     trim: true
-  },
+  },*/
   image: {
     type: String,
     required: [true, 'Image is required']
@@ -25,11 +25,11 @@ const postSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  category: {
+  /*category: {
     type: String,
     enum: ['announcement', 'event', 'news', 'achievement', 'workshop', 'competition'],
     default: 'announcement'
-  },
+  },*/
   tags: [{
     type: String,
     trim: true
