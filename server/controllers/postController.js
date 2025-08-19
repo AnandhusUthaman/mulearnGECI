@@ -92,17 +92,14 @@ const postController = {
       }
 
       const {
-        title, description, content, category, tags, status,
+        title, tags, status,
         featured, registrationLink, imageAlt
       } = req.body;
 
       const post = new Post({
         title,
-        description,
-        content,
         image: `/uploads/posts/${req.file.filename}`,
         imageAlt: imageAlt || title,
-        category,
         tags: tags ? JSON.parse(tags) : [],
         status: status || 'draft',
         featured: featured === 'true',
@@ -137,15 +134,12 @@ const postController = {
       }
 
       const {
-        title, description, content, category, tags, status,
+        title, tags, status,
         featured, registrationLink, imageAlt
       } = req.body;
 
       // Update fields
       if (title) post.title = title;
-      if (description) post.description = description;
-      if (content) post.content = content;
-      if (category) post.category = category;
       if (tags) post.tags = JSON.parse(tags);
       if (status) post.status = status;
       if (featured !== undefined) post.featured = featured === 'true';

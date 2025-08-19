@@ -162,13 +162,13 @@ export function AdminPosts() {
                     {post.title}
                   </h3>
                   
-                  <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  {/*<div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
                     <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                     <div className="flex items-center space-x-1">
                       <Eye className="h-4 w-4" />
                       <span>{post.category || 'announcement'}</span>
                     </div>
-                  </div>
+                  </div>*/}
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">

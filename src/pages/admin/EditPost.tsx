@@ -7,9 +7,9 @@ import { postsAPI } from '../../services/api';
 
 interface EditPostFormData {
   title: string;
-  description: string;
+  /*description: string;
   content: string;
-  category: string;
+  category: string;*/
 }
 
 export function EditPost() {
@@ -35,9 +35,9 @@ export function EditPost() {
         
         // Set form values
         setValue('title', post.title);
-        setValue('description', post.description);
+        /*setValue('description', post.description);
         setValue('content', post.content);
-        setValue('category', post.category);
+        setValue('category', post.category);*/
         
         // Set image preview if exists
         if (post.image) {
@@ -80,11 +80,15 @@ export function EditPost() {
       const formData = new FormData();
       if (selectedImage) {
         formData.append('image', selectedImage);
+      } else if (!imagePreview) {
+      // If user removed existing image
+        formData.append('removeImage', 'true');
       }
+
       formData.append('title', data.title);
-      formData.append('description', data.description);
+      /*formData.append('description', data.description);
       formData.append('content', data.content);
-      formData.append('category', data.category);
+      formData.append('category', data.category);*/
       formData.append('status', 'published');
 
       await postsAPI.update(id, formData);
@@ -97,6 +101,7 @@ export function EditPost() {
       setIsSubmitting(false);
     }
   };
+  
 
   if (isLoading) {
     return (
@@ -185,7 +190,7 @@ export function EditPost() {
               )}
             </div>
 
-            <div>
+            {/*<div>
               <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                 Description *
               </label>
@@ -231,7 +236,7 @@ export function EditPost() {
               {errors.category && (
                 <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.category.message}</p>
               )}
-            </div>
+            </div>*/}
 
             <div className="flex space-x-4 pt-6">
               <button
