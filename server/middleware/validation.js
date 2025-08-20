@@ -48,14 +48,14 @@ const validatePost = [
     .trim()
     .isLength({ min: 5, max: 200 })
     .withMessage('Title must be between 5 and 200 characters'),
-  body('description')
+  /*body('description')
     .trim()
     .isLength({ min: 10, max: 2000 })
     .withMessage('Description must be between 10 and 2000 characters'),
   body('category')
     .optional()
     .isIn(['announcement', 'event', 'news', 'achievement', 'workshop', 'competition'])
-    .withMessage('Invalid category'),
+    .withMessage('Invalid category'),*/
   body('status')
     .optional()
     .isIn(['draft', 'published', 'archived'])

@@ -125,9 +125,9 @@ export function Execom() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
+      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white dark:from-gray-900 dark:to-gray-900 dark:text-blue-100 py-20 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -135,7 +135,7 @@ export function Execom() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Executive Committee</h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-blue-100 dark:text-blue-200 max-w-3xl mx-auto leading-relaxed">
               Meet the dedicated leaders who drive µLearn's mission forward and create opportunities for our community to thrive.
             </p>
           </motion.div>
@@ -143,11 +143,11 @@ export function Execom() {
       </section>
 
       {/* Responsibilities */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Responsibilities</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Responsibilities</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               The executive committee works together to ensure µLearn continues to be a thriving community.
             </p>
           </div>
@@ -164,8 +164,8 @@ export function Execom() {
                 <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <responsibility.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{responsibility.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{responsibility.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{responsibility.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{responsibility.description}</p>
               </motion.div>
             ))}
           </div>
@@ -173,11 +173,11 @@ export function Execom() {
       </section>
 
       {/* Executive Committee Members */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meet the Team</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Meet the Team</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Our executive committee brings together diverse talents and expertise to lead µLearn.
             </p>
           </div>
@@ -189,7 +189,7 @@ export function Execom() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
@@ -199,28 +199,28 @@ export function Execom() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">{member.name}</h3>
-                  <p className="text-blue-600 font-medium mb-3">{member.position}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{member.bio}</p>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{member.name}</h3>
+                  <p className="text-blue-600 dark:text-blue-300 font-medium mb-3">{member.position}</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">{member.bio}</p>
                   
                   <div className="flex items-center space-x-3">
                     <a
                       href={member.linkedin}
-                      className="text-gray-400 hover:text-blue-600 transition-colors"
+                      className="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       aria-label="LinkedIn"
                     >
                       <Linkedin className="h-5 w-5" />
                     </a>
                     <a
                       href={`mailto:${member.email}`}
-                      className="text-gray-400 hover:text-blue-600 transition-colors"
+                      className="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       aria-label="Email"
                     >
                       <Mail className="h-5 w-5" />
                     </a>
                     <a
                       href={member.github}
-                      className="text-gray-400 hover:text-blue-600 transition-colors"
+                      className="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       aria-label="GitHub"
                     >
                       <Github className="h-5 w-5" />
@@ -234,7 +234,7 @@ export function Execom() {
       </section>
 
       {/* Admin Access Note */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-16 bg-blue-600 dark:bg-gray-900 text-white dark:text-blue-100 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -242,13 +242,13 @@ export function Execom() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Want to Join the Team?</h2>
-            <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+            <p className="text-xl text-blue-100 dark:text-blue-200 mb-8 leading-relaxed">
               We're always looking for passionate individuals to join our executive committee and help shape the future of µLearn.
             </p>
             
             <a
               href="/contact"
-              className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors duration-200"
+              className="bg-white dark:bg-blue-600 text-blue-600 dark:text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 dark:hover:bg-blue-700 transition-colors duration-200"
             >
               Get in Touch
             </a>

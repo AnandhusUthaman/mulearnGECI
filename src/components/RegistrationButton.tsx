@@ -36,7 +36,7 @@ export function RegistrationButton({
         href={registrationLink}
         target="_blank"
         rel="noopener noreferrer"
-        className={`w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center space-x-2 ${className}`}
+        className={`w-full bg-blue-600 dark:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-800 transition-colors duration-200 flex items-center justify-center space-x-2 ${className}`}
       >
         <span>Register Now</span>
         <ExternalLink className="h-4 w-4" />
@@ -48,7 +48,7 @@ export function RegistrationButton({
     <button
       onClick={handleEventRegistration}
       disabled={isRegistering}
-      className={`w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+      className={`w-full bg-blue-600 dark:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-800 transition-colors duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
     >
       <span>{isRegistering ? 'Registering...' : 'Register Now'}</span>
       <ExternalLink className="h-4 w-4" />
