@@ -8,7 +8,7 @@ import DarkModeToggle from './DarkModeToggle';
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth();
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -62,14 +62,14 @@ export function Header() {
 
             {/* Admin Login */}
             <div className="flex items-center space-x-4">
-              {!user && (
+              {/* {!user && (
                 <Link
                   to="/admin/login"
                   className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm font-medium"
                 >
                   Admin Login
                 </Link>
-              )}
+              )} */}
               
               {/* Mobile menu button */}
               <button
