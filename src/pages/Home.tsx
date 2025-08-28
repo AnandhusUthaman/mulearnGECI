@@ -149,7 +149,7 @@ export function Home() {
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 leading-tight">
                       {post.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{post.description}</p>
+                    {/* <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{post.description}</p> */}
                   </div>
                 </motion.article>
               ))}
