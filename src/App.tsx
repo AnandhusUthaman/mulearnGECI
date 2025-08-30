@@ -9,6 +9,7 @@ import { Theme } from './pages/Theme';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { Gallery } from './pages/Gallery';
+import { Timeline } from './pages/Timeline';
 import { AdminLogin } from './pages/admin/AdminLogin';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminPosts } from './pages/admin/AdminPosts';
@@ -35,6 +36,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/gallery" element={<Gallery />} />
+              <Route path="/timeline" element={<Timeline />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route 
                 path="/admin" 

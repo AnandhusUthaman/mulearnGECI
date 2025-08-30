@@ -14,6 +14,7 @@ export function Header() {
     { name: 'Home', href: '/' },
     { name: 'Events', href: '/events' },
     { name: 'Gallery', href: '/gallery' },
+    { name: 'Timeline', href: '/timeline' },
     { name: 'Execom', href: '/execom' },
     { name: 'Theme', href: '/theme' },
     { name: 'About', href: '/about' },
