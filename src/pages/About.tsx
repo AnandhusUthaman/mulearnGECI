@@ -158,7 +158,7 @@ export function About() {
       </section>
 
       {/* Timeline */}
-      <section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+      {/* <section className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Journey</h2>
@@ -193,7 +193,7 @@ export function About() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

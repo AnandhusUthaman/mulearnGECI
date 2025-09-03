@@ -43,10 +43,10 @@ export function Execom() {
     {
       name: 'Nicholas Roy',
       position: 'Community Lead',
-      image: '',
+      image: './src/img/nicho.jpg',
       bio: 'Organizing engaging events and workshops to enhance learning experiences.',
       linkedin: 'https://www.linkedin.com/in/karthik-nair-0000000000?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-      email: 'karthiknair2005@gmail.com',
+      email: 'Rizzupnick@gmail.com',
       github: '#'
     },
     {

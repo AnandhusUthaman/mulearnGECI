@@ -86,10 +86,10 @@ export function Timeline() {
                   viewport={{ once: true }}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-1/2 -translate-x-1/2 w-5 h-5 bg-blue-500 border-4 border-white rounded-full shadow-md" />
+                  <div  className="absolute left-1/2 -translate-x-1/2 w-5 h-5 bg-blue-500 border-4 border-white rounded-full shadow-md" />
 
                   {/* Event card */}
-                  <div className="w-96 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                  <div  className="w-96 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
                     {/* Event image */}
                     <div className="relative h-40 overflow-hidden">
                       <img
@@ -97,6 +97,7 @@ export function Timeline() {
                         alt={event.title}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       />
+                      
                     </div>
 
                     {/* Event content */}

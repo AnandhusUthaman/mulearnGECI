@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { Mail, Phone, MapPin, Send, MessageCircle, Users, Calendar } from 'lucide-react';
 import { contactAPI } from '../services/api';
+import { a } from 'framer-motion/client';
 
 interface ContactFormData {
   name: string;
@@ -20,13 +21,14 @@ export function Contact() {
     console.log('Quick action clicked:', action);
     switch (action) {
       case 'Join Now':
-        alert('Join community functionality - redirecting to registration');
+        // alert('Join community functionality - redirecting to registration');
+        window.location.href = 'https://chat.whatsapp.com/CR4zAR4yELmClICDZm5vOP?mode=ems_qr_c';
         break;
       case 'View Events':
         window.location.href = '/events';
         break;
       case 'Get Help':
-        alert('Get help functionality - opening support chat');
+        // alert('Get help functionality - opening support chat');
         break;
       default:
         alert(`Action: ${action}`);
