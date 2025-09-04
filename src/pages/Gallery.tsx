@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Calendar } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, X } from 'lucide-react';
 import { postsAPI } from '../services/api';
 import { getPostImageUrl } from '../utils/imageUtils';
 
-function GalleryImage({ src, alt }: { src: string; alt: string }) {
+function GalleryImage({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) {
   return (
-    <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-xl overflow-hidden">
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-auto object-contain"
-      />
+    <div
+      className="w-full bg-gray-200 dark:bg-gray-800 rounded-xl overflow-hidden cursor-pointer"
+      onClick={onClick}
+    >
+      <img src={src} alt={alt} className="w-full h-auto object-contain hover:scale-105 transition-transform duration-300" />
     </div>
   );
 }
 
-
 export function Gallery() {
   const [posts, setPosts] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // For enlarged image modal
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  const [imageSize, setImageSize] = useState<{ width: number; height: number } | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +43,22 @@ export function Gallery() {
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 
+  const openImage = (src: string, alt: string) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => {
+      setImageSize({
+        width: img.naturalWidth * 0.5, // scale 50%
+        height: img.naturalHeight * 0.5,
+      });
+      setSelectedImage({ src, alt });
+    };
+  };
+
+  const closeImage = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <main className="container mx-auto px-4 py-8">
@@ -54,7 +72,10 @@ export function Gallery() {
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden animate-pulse transition-colors duration-300">
+              <div
+                key={index}
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden animate-pulse transition-colors duration-300"
+              >
                 <div className="h-48 bg-gray-200 dark:bg-gray-700"></div>
                 <div className="p-6">
                   <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
@@ -75,7 +96,11 @@ export function Gallery() {
                 className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
                 {post.image && (
-                  <GalleryImage src={getPostImageUrl(post.image)} alt={post.title} />
+                  <GalleryImage
+                    src={getPostImageUrl(post.image)}
+                    alt={post.title}
+                    onClick={() => openImage(getPostImageUrl(post.image), post.title)}
+                  />
                 )}
 
                 <div className="p-6">
@@ -97,8 +122,18 @@ export function Gallery() {
         ) : (
           <div className="text-center py-12">
             <div className="text-gray-400 dark:text-gray-500 mb-4">
-              <svg className="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              <svg
+                className="mx-auto h-12 w-12"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
               </svg>
             </div>
             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No posts found</h3>
@@ -106,6 +141,46 @@ export function Gallery() {
           </div>
         )}
       </main>
+
+      {/* Enlarged Image Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeImage}
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              className="relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={closeImage}
+                className="absolute top-3 right-3 bg-black/50 text-white rounded-full p-2 hover:bg-black/70"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                className="object-contain rounded-2xl shadow-xl"
+                style={{
+                  width: imageSize?.width,
+                  height: imageSize?.height,
+                  maxWidth: '90vw',
+                  maxHeight: '90vh',
+                  display: 'block',
+                }}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

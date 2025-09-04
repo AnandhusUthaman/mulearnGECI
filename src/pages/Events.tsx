@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, MapPin, Users, Clock } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, MapPin, Users, Clock, X } from 'lucide-react';
 import { eventsAPI } from '../services/api';
 import { getEventImageUrl } from '../utils/imageUtils';
 import { RegistrationButton } from '../components/RegistrationButton';
 
 export function Events() {
   const [activeTab, setActiveTab] = useState('upcoming');
-
   const [upcomingEvents, setUpcomingEvents] = useState<any[]>([]);
   const [pastEvents, setPastEvents] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // For enlarged image modal
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  const [imageSize, setImageSize] = useState<{ width: number; height: number } | null>(null);
+
   const events = activeTab === 'upcoming' ? upcomingEvents : pastEvents;
 
-  // Fetch events from API
+  // Fetch events
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         setIsLoading(true);
         const [upcomingResponse, pastResponse] = await Promise.all([
           eventsAPI.getAll('upcoming'),
-          eventsAPI.getAll('completed')
+          eventsAPI.getAll('completed'),
         ]);
         setUpcomingEvents(upcomingResponse.data || []);
         setPastEvents(pastResponse.data || []);
@@ -35,6 +38,21 @@ export function Events() {
 
     fetchEvents();
   }, []);
+
+  const openImage = (src: string, alt: string) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => {
+    setImageSize({
+      width: img.naturalWidth * 0.5, // scale 50%
+      height: img.naturalHeight * 0.5,
+    });
+    setSelectedImage({ src, alt });
+  }};
+
+  const closeImage = () => {
+    setSelectedImage(null);
+  };
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
@@ -99,7 +117,10 @@ export function Events() {
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
                 >
-                  <div className="relative h-48 overflow-hidden">
+                  <div
+                    className="relative h-48 overflow-hidden cursor-pointer"
+                    onClick={() => openImage(getEventImageUrl(event.image), event.title)}
+                  >
                     <img
                       src={getEventImageUrl(event.image)}
                       alt={event.title}
@@ -127,7 +148,7 @@ export function Events() {
                           {new Date(event.date).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
-                            day: 'numeric'
+                            day: 'numeric',
                           })}
                         </span>
                         <Clock className="h-4 w-4 ml-4 mr-2 text-blue-600" />
@@ -165,6 +186,47 @@ export function Events() {
           )}
         </div>
       </section>
+
+      {/* Enlarged Image Modal (same for desktop + mobile) */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeImage}
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              className="relative "
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={closeImage}
+                className="absolute top-3 right-3 bg-black/50 text-white rounded-full p-2 hover:bg-black/70"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                className="object-contain rounded-2xl shadow-xl"
+                style={{
+                  width: imageSize?.width,
+                  height: imageSize?.height,
+                  maxWidth: "90vw",
+                  maxHeight: "90vh",
+                  display: 'block',
+              }}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
+

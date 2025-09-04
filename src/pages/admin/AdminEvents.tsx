@@ -77,7 +77,13 @@ export function AdminEvents() {
       try {
         setIsLoading(true);
         const response = await eventsAPI.getAll();
-        setEvents(response.data || []);
+
+        // ✅ Sort by createdAt (newest first)
+      const sortedEvents = (response.data || []).sort(
+        (a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+
+        setEvents(sortedEvents);
       } catch (error) {
         console.error('Failed to fetch events:', error);
         alert('Failed to load events');

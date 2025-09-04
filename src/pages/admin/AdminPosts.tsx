@@ -64,7 +64,12 @@ export function AdminPosts() {
       try {
         setIsLoading(true);
         const response = await postsAPI.getAll();
-        setPosts(response.data || []);
+
+      // ✅ Sort posts by createdAt (newest first)
+      const sortedPosts = (response.data || []).sort(
+        (a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+        setPosts(sortedPosts);
       } catch (error) {
         console.error('Failed to fetch posts:', error);
         alert('Failed to load posts');
